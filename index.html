@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srabony's Birthday</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('lovee.jpg'); /* Use a background image */
+            background-size: cover;
+            color: #7c8177;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: rgb(231, 179, 37);
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.5em;
+            margin-top: -10px;
+        }
+
+        /* Button Container */
+        .buttons {
+            margin-top: 30px;
+            position: relative;
+            width: 400px;
+            height: 100px;
+        }
+
+        /* Button Styles */
+        button {
+            padding: 10px 40px;
+            background-color: #81e7eb;
+            color: #000000;
+            border: 2px solid rgb(46, 0, 0);
+            border-radius: 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            position: absolute;
+            box-shadow: 6px 8px 8px grey;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #6ccfd3; /* Slightly darker on hover */
+        }
+
+        #yes-btn {
+            left: 100px;
+            top: 30px;
+            animation: moveBlock 2s infinite;
+        }
+
+        @keyframes moveBlock {
+            0% { background-color: pink; }
+            50% { background-color: rgb(132, 99, 192); }
+            100% { background-color: pink; }
+        }
+
+        #no-btn {
+            left: 230px;
+            top: 30px;
+            color: black;
+        }
+
+        /* Alert Box */
+        .custom-alert {
+            display: none;
+            padding: 20px;
+            background-color: lightblue;
+            border: 2px solid rgb(114, 9, 9);
+            width: 300px;
+            border-radius: 20px;
+            position: absolute;
+            top: 320px;
+            left: -10px;
+            text-align: center;
+            margin: 20px;
+        }
+
+        .custom-alert.show {
+            display: block;
+        }
+
+        /* Confetti Animation */
+        .confetti {
+            position: absolute;
+            top: -10px;
+            width: 10px;
+            height: 10px;
+            opacity: 0.9;
+            animation: confetti-fall 2s linear infinite;
+            will-change: transform, opacity;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+        }
+
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 10px;
+            font-size: 0.8em;
+            color: #666;
+            animation: footer-block 2s infinite;
+        }
+
+        @keyframes footer-block {
+            0% { color: cyan; }
+            50% { color: red; }
+            100% { color: rgb(171, 177, 171); }
+        }
+
+        /* Image */
+        #img2 {
+            display: none;
+            position: fixed;
+            top: 120px;
+            height: 220px;
+            width: 300px;
+            border-radius: 50px 120px 30px 130px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Confetti Container -->
+    <div class="confetti-container"></div>
+
+    <!-- Main Content -->
+    <div class="ask slide-in">
+        <h5>Hey,Srabony <br>Today's Your Birthday?</h5>
+        <p></p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons slide-in">
+        <button id="yes-btn" onclick="showAlert()">Yes</button>
+        <button id="no-btn" onclick="swapButtons()">No</button>
+    </div>
+
+    <!-- Alert Box -->
+    <div id="alert-box" class="custom-alert">
+        <h3>শুভ জন্মদিন, শুভেচ্ছা তোমায় সারাক্ষণ মুখখানি থাকুক হাসিময়, একবিন্দু জলও না আসুক চোখের কোনায় স্বপ্নআঁকা হৃদয়টি থাকুক গতিময়, ভালো থাকুক প্রিয়জন সবসময় এই কথা লিখে দিলাম প্রার্থনার খাতায় 🥰</h3>
+    </div>
+
+    <!-- Image -->
+    <img id="img2" src="https://i.pinimg.com/originals/da/63/f4/da63f48a4ad099950579cabcdbb0f272.gif" alt="Birthday Celebration">
+
+    <!-- Footer -->
+    <footer>
+        <h4>©elitefardin</h4>
+    </footer>
+
+    <script>
+        // Function to create confetti
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(confetti);
+
+            setTimeout(() => {
+                confetti.remove();
+            }, 6000); // Remove confetti after 6 seconds
+        }
+
+        // Function to show alert and confetti
+        function showAlert() {
+            for (let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+
+            const alertBox = document.getElementById('alert-box');
+            const img2 = document.getElementById('img2');
+
+            alertBox.style.display = 'block';
+            img2.style.display = 'block';
+
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 15000); // Hide alert after 15 seconds
+        }
+
+        // Function to swap button positions
+        function swapButtons() {
+            const yesButton = document.getElementById('yes-btn');
+            const noButton = document.getElementById('no-btn');
+
+            // Swap positions
+            const tempLeft = yesButton.style.left;
+            yesButton.style.left = noButton.style.left;
+            noButton.style.left = tempLeft;
+        }
+
+        // Generate confetti on page load
+        window.addEventListener('load', () => {
+            for (let i = 0; i < 30; i++) {
+                createConfetti();
+            }
+        });
+    </script>
+</body>
+</html>
